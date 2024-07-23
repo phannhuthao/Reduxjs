@@ -41,10 +41,15 @@ const studentSlice = createSlice({
     },
     reducers: {},
     extraReducers: (builder) => {
-        // có trạng thái của 1 action thunk: pending, fulfild ,  rejected
+        // Các trạng thái của 1 action thunk: pending, fulfilled ,  rejected
+        // pending: kết quả chưa xử lí xong , đang trong quá trình chờ
+        // fulfilled: Quá trình thực hiện thành công
+        // rejected: Quá trình thất bại
+       
+        // lấy danh sách
         builder.addCase(getAllStudents.pending, (state, action)=> {
             // xử lí trong khi call API
-            console.log("Đang call API")
+            console.log("Đang call API");
         }).addCase(getAllStudents.fulfilled, (state , action) => {
             console.log("Call API thành công");
             console.log(action.payload);
@@ -54,6 +59,8 @@ const studentSlice = createSlice({
             console.log("Call API thất bại");
             console.log(action);
         })
+
+
         // Thêm
         builder.addCase(createStudent.pending, (state, action)=> {
             console.log("Đang call API");
@@ -65,6 +72,7 @@ const studentSlice = createSlice({
             console.log("Call API thất bại");
         })
 
+
         // Xóa
         builder.addCase(deleteStudent.pending,(state, action)=> {
             console.log("Đang call API");
@@ -75,6 +83,7 @@ const studentSlice = createSlice({
         }).addCase(deleteStudent.rejected, (state, action)=> {
             console.log("Call API thất bại");
         })
+
 
         // Sửa
         builder.addCase(editStudent.pending, (state, action)=> {
